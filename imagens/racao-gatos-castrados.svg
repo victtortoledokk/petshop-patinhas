@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+<rect width="240" height="240" rx="16" fill="#f4efe6"/>
+
+<path d="M65 50 L175 50 L185 200 L55 200 Z" fill="#5a3f8f"/>
+<rect x="65" y="40" width="110" height="14" rx="3" fill="#3c2963"/>
+<rect x="72" y="70" width="96" height="26" rx="4" fill="#ffffff"/>
+<text x="120" y="89" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#5a3f8f">GATOS</text>
+
+<path d="M95 115 L100 95 L112 112 Z M145 115 L140 95 L128 112 Z" fill="#f2c27a"/>
+<ellipse cx="120" cy="135" rx="28" ry="24" fill="#f2c27a"/>
+<circle cx="110" cy="130" r="3" fill="#333"/><circle cx="130" cy="130" r="3" fill="#333"/>
+<path d="M116 140 L124 140 L120 145 Z" fill="#d46a6a"/>
+<path d="M98 140 L82 137 M98 144 L82 147 M142 140 L158 137 M142 144 L158 147" stroke="#333" stroke-width="1.5"/>
+<rect x="88" y="170" width="64" height="20" rx="10" fill="#3c2963"/>
+<text x="120" y="185" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffffff">10 kg</text>
+</svg>
