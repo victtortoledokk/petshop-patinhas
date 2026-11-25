@@ -3,106 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Patinhas & Cia Pet Shop: acessórios, rações, produtos de higiene e serviços de banho e tosa com tele-busca.">
+  <meta name="description" content="Patinhas & Cia Pet Shop: acessórios, rações, produtos de higiene e banho e tosa com tele-busca.">
   <meta name="author" content="João Victor Toledo Duarte">
   <title>Início | Patinhas &amp; Cia Pet Shop</title>
+  <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
+  <!-- Bootstrap 5 (CDN) e, depois, o CSS próprio do site, que personaliza o Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body id="topo">
+  <!-- Link para pular direto ao conteúdo (acessibilidade para teclado e leitores de tela) -->
+  <a class="visually-hidden-focusable pular-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- ===================== CABEÇALHO ===================== -->
   <header>
-    <a href="index.html"><img src="imagens/logo.svg" alt="Logotipo do Patinhas &amp; Cia Pet Shop: uma pegada de pata branca em um círculo verde" width="90" height="90"></a>
-    <h1>Patinhas &amp; Cia Pet Shop</h1>
-    <p><em>Carinho, saúde e bem-estar para o seu melhor amigo.</em></p>
-    <p>
-      <strong>Endereço:</strong> Rua das Acácias, 120 – Jardim Primavera – São Paulo/SP<br>
-      <strong>Telefone/WhatsApp:</strong> <a href="tel:+5511900000000">(11) 90000-0000</a> |
-      <strong>E-mail:</strong> <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a><br>
-      <strong>Horário:</strong> segunda a sexta, 8h às 19h; sábado, 8h às 14h
-    </p>
-    <nav aria-label="Menu principal">
-      <ul>
-        <li><a href="index.html" aria-current="page"><strong>Início</strong></a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="sobre.html">Sobre e Contato</a></li>
-        <li><a href="ajuda.html">Ajuda</a></li>
-      </ul>
+    <!-- Barra superior: status da loja (atualizado por JavaScript), contato e recursos de acessibilidade -->
+    <div class="barra-topo py-2">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <p class="mb-0 d-flex flex-wrap align-items-center gap-2">
+          <span id="status-loja" class="badge text-bg-secondary">Seg. a sex. 8h às 19h · sáb. 8h às 14h</span>
+          <span>WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a></span>
+        </p>
+        <div class="barra-acessibilidade d-flex flex-wrap gap-1" role="group" aria-label="Recursos de acessibilidade">
+          <button type="button" class="btn btn-sm" id="btn-diminuir-fonte" aria-label="Diminuir o tamanho do texto">A−</button>
+          <button type="button" class="btn btn-sm" id="btn-fonte-padrao" aria-label="Voltar ao tamanho de texto padrão">A</button>
+          <button type="button" class="btn btn-sm" id="btn-aumentar-fonte" aria-label="Aumentar o tamanho do texto">A+</button>
+          <button type="button" class="btn btn-sm" id="btn-contraste" aria-pressed="false">Alto contraste</button>
+          <button type="button" class="btn btn-sm" id="btn-ouvir" aria-pressed="false"><span class="rotulo-ouvir">Ouvir página</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu de navegação responsivo (Bootstrap navbar): vira um botão "hambúrguer" em telas pequenas -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand navbar-marca d-flex align-items-center gap-2 fw-bold text-primary" href="index.html">
+          <img src="imagens/logo.svg" alt="" width="48" height="48">
+          Patinhas &amp; Cia Pet Shop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+                aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir ou fechar o menu de navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link px-lg-3" href="index.html" aria-current="page">Início</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="produtos.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="servicos.html">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="agendamento.html">Agendamento</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="sobre.html">Sobre e Contato</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="ajuda.html">Ajuda</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <hr>
   </header>
 
-  <main>
-    <section>
-      <h2>Bem-vindo ao Patinhas &amp; Cia!</h2>
-      <p>Somos um petshop de bairro que cuida do seu pet como se fosse da nossa família. Aqui você encontra <strong>acessórios</strong>, <strong>rações não perecíveis</strong> e <strong>produtos de higiene e limpeza</strong>, além dos serviços de <strong>banho e tosa com ou sem tele-busca</strong>.</p>
+  <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+  <main id="conteudo" tabindex="-1">
+    <!-- Carrossel de destaques (Bootstrap). A troca automática é iniciada em js/main.js -->
+    <section aria-label="Destaques">
+      <div id="carrossel-destaques" class="carousel slide position-relative" aria-roledescription="carrossel">
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carrossel-destaques" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: Banho e tosa com carinho"></button>
+        <button type="button" data-bs-target="#carrossel-destaques" data-bs-slide-to="1" aria-label="Slide 2: Tudo para o seu pet"></button>
+        <button type="button" data-bs-target="#carrossel-destaques" data-bs-slide-to="2" aria-label="Slide 3: Tele-busca: buscamos e levamos"></button>
+        </div>
+        <div class="carousel-inner" aria-live="off">
+        <div class="carousel-item active" role="group" aria-roledescription="slide" aria-label="1 de 3">
+          <img src="imagens/banner-banho.svg" class="d-block w-100" alt="Ilustração de um cachorro caramelo sorridente dentro de uma banheira branca cheia de espuma, sobre fundo verde com pegadas de patas." width="1200" height="450">
+          <div class="carousel-caption">
+            <p class="h2 text-white">Banho e tosa com carinho</p>
+            <p>Profissionais treinados e produtos de qualidade para o seu pet ficar limpo e cheiroso.</p>
+            <a class="btn btn-light fw-semibold" href="agendamento.html">Agendar agora</a>
+          </div>
+        </div>
+        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="2 de 3">
+          <img src="imagens/banner-produtos.svg" class="d-block w-100" alt="Ilustração de produtos para pets sobre fundo azul: saco de ração vermelho, saco de ração roxo, bolinha laranja e um gato deitado numa cama pet." width="1200" height="450">
+          <div class="carousel-caption">
+            <p class="h2 text-white">Tudo para o seu pet</p>
+            <p>Acessórios, rações e produtos de higiene com preço justo.</p>
+            <a class="btn btn-light fw-semibold" href="produtos.html">Ver produtos</a>
+          </div>
+        </div>
+        <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="3 de 3">
+          <img src="imagens/banner-telebusca.svg" class="d-block w-100" alt="Ilustração de uma van verde com uma grande pegada de pata na lateral e um cachorro na janela, andando por uma estrada sobre fundo laranja." width="1200" height="450">
+          <div class="carousel-caption">
+            <p class="h2 text-white">Tele-busca: buscamos e levamos</p>
+            <p>Não tem tempo? Buscamos o seu pet em casa por apenas mais R$ 20,00.</p>
+            <a class="btn btn-light fw-semibold" href="servicos.html#tele-busca">Conhecer a tele-busca</a>
+          </div>
+        </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carrossel-destaques" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Slide anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carrossel-destaques" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próximo slide</span>
+        </button>
+        <!-- Botão para pausar a troca automática (acessibilidade) -->
+        <button type="button" class="btn btn-light btn-sm btn-carrossel-pausa" id="btn-pausar-carrossel">
+          <span class="icone" aria-hidden="true">❚❚</span> <span class="rotulo">Pausar</span>
+        </button>
+      </div>
     </section>
 
-    <section>
-      <h2>Categorias de produtos</h2>
-      <ul>
-        <li><a href="produtos.html#acessorios">Acessórios</a>: roupas, brinquedos, camas e muito mais.</li>
-        <li><a href="produtos.html#racoes">Rações não perecíveis</a>: alimentação balanceada para cães e gatos.</li>
-        <li><a href="produtos.html#higiene">Higiene e limpeza</a>: tapetes higiênicos, fraldas, shampoos e outros.</li>
-      </ul>
+    <!-- Boas-vindas com saudação e relógio (funções temporais em js/main.js) -->
+    <section class="container py-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-8">
+          <h1 class="fw-bold">Bem-vindo ao Patinhas &amp; Cia!</h1>
+          <p class="lead">Somos um petshop de bairro que cuida do seu pet como se fosse da nossa família. Aqui você encontra <strong>acessórios</strong>, <strong>rações não perecíveis</strong> e <strong>produtos de higiene e limpeza</strong>, além dos serviços de <strong>banho e tosa com ou sem tele-busca</strong>.</p>
+          <a class="btn btn-primary btn-lg" href="agendamento.html">Agendar banho ou tosa</a>
+        </div>
+        <div class="col-lg-4">
+          <div class="card bg-suave border-0 p-3">
+            <p id="saudacao" class="fw-semibold mb-1">Olá! Seja bem-vindo.</p>
+            <p class="mb-0">Agora são <span id="relogio" class="relogio fw-bold">--:--:--</span></p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Destaques da semana</h2>
-      <ul>
-        <li>
-          <img src="imagens/cama-pet.svg" alt="Ilustração de uma cama pet redonda" width="120" height="120"><br>
-          <a href="produtos.html#acessorios">Cama pet redonda acolchoada – M</a> – <strong>R$ 129,90</strong>
-        </li>
-        <li>
-          <img src="imagens/racao-caes-adultos.svg" alt="Ilustração de um saco de ração para cães adultos" width="120" height="120"><br>
-          <a href="produtos.html#racoes">Ração seca para cães adultos – 15 kg</a> – <strong>R$ 189,90</strong>
-        </li>
-        <li>
-          <img src="imagens/tapete-higienico.svg" alt="Ilustração de um tapete higiênico" width="120" height="120"><br>
-          <a href="produtos.html#higiene">Tapete higiênico – 30 unidades</a> – <strong>R$ 79,90</strong>
-        </li>
-      </ul>
-      <p><a href="produtos.html">Ver todos os produtos</a></p>
+    <!-- Promoção com contagem regressiva -->
+    <section class="container mb-5" aria-labelledby="titulo-promocao">
+      <div class="faixa-promocao rounded-3 p-4">
+        <h2 id="titulo-promocao" class="h4 fw-bold">Promoção da semana</h2>
+        <p class="mb-1">Agende um <strong>banho e tosa completa</strong> e ganhe uma <strong>bolinha mordedor</strong> de brinde!</p>
+        <p class="mb-0">A promoção termina em: <span id="contador-promocao" class="contador">calculando…</span></p>
+      </div>
     </section>
 
-    <section>
-      <h2>Banho e tosa</h2>
-      <p>Banho a partir de <strong>R$ 50,00</strong> e banho e tosa completa a partir de <strong>R$ 90,00</strong> (pets de pequeno porte). Não pode trazer o seu pet? Contrate a <strong>tele-busca</strong> por apenas mais R$ 20,00 e nós buscamos e levamos o seu amigo em casa.</p>
-      <p><a href="servicos.html">Ver serviços e tabela de preços</a></p>
+    <!-- Categorias de produtos -->
+    <section class="bg-suave py-5" aria-labelledby="titulo-categorias">
+      <div class="container">
+        <h2 id="titulo-categorias" class="fw-bold mb-4">Categorias de produtos</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <a class="card-categoria" href="produtos.html#acessorios">
+              <div class="card h-100 text-center p-3">
+                <img src="imagens/roupinha-moletom.svg" alt="" width="120" height="120" class="mx-auto">
+                <h3 class="h5 mt-3">Acessórios</h3>
+                <p class="mb-0">Roupas, brinquedos, camas e muito mais.</p>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="card-categoria" href="produtos.html#racoes">
+              <div class="card h-100 text-center p-3">
+                <img src="imagens/racao-filhotes.svg" alt="" width="120" height="120" class="mx-auto">
+                <h3 class="h5 mt-3">Rações não perecíveis</h3>
+                <p class="mb-0">Alimentação balanceada para cães e gatos.</p>
+              </div>
+            </a>
+          </div>
+          <div class="col">
+            <a class="card-categoria" href="produtos.html#higiene">
+              <div class="card h-100 text-center p-3">
+                <img src="imagens/shampoo-neutro.svg" alt="" width="120" height="120" class="mx-auto">
+                <h3 class="h5 mt-3">Higiene e limpeza</h3>
+                <p class="mb-0">Tapetes higiênicos, fraldas, shampoos e outros.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Por que escolher o Patinhas &amp; Cia?</h2>
-      <ul>
-        <li>Profissionais treinados e apaixonados por animais.</li>
-        <li>Produtos de marcas confiáveis.</li>
-        <li>Tele-busca com veículo adaptado e seguro.</li>
-        <li>Atendimento de segunda a sábado.</li>
-      </ul>
+    <!-- Destaques da semana -->
+    <section class="container py-5" aria-labelledby="titulo-destaques">
+      <h2 id="titulo-destaques" class="fw-bold mb-4">Destaques da semana</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+        <div class="col">
+          <div class="card card-produto h-100 text-center">
+            <img src="imagens/cama-pet.svg" alt="Ilustração de uma cama pet redonda marrom com almofada bege" width="200" height="200">
+            <div class="card-body">
+              <h3 class="h6 card-title">Cama pet redonda acolchoada – M</h3>
+              <p class="preco mb-2"><span class="visually-hidden">Preço: </span>R$ 129,90</p>
+              <a href="produtos.html#acessorios" class="btn btn-outline-primary btn-sm">Ver na loja<span class="visually-hidden">: Cama pet redonda acolchoada – M</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card card-produto h-100 text-center">
+            <img src="imagens/racao-caes-adultos.svg" alt="Ilustração de um saco vermelho de ração para cães de 15 kg" width="200" height="200">
+            <div class="card-body">
+              <h3 class="h6 card-title">Ração seca para cães adultos – 15 kg</h3>
+              <p class="preco mb-2"><span class="visually-hidden">Preço: </span>R$ 189,90</p>
+              <a href="produtos.html#racoes" class="btn btn-outline-primary btn-sm">Ver na loja<span class="visually-hidden">: Ração seca para cães adultos – 15 kg</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card card-produto h-100 text-center">
+            <img src="imagens/tapete-higienico.svg" alt="Ilustração de um tapete higiênico quadriculado azul" width="200" height="200">
+            <div class="card-body">
+              <h3 class="h6 card-title">Tapete higiênico – 30 unidades</h3>
+              <p class="preco mb-2"><span class="visually-hidden">Preço: </span>R$ 79,90</p>
+              <a href="produtos.html#higiene" class="btn btn-outline-primary btn-sm">Ver na loja<span class="visually-hidden">: Tapete higiênico – 30 unidades</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Serviços + dica rotativa (troca a cada 8 segundos) -->
+    <section class="container" aria-labelledby="titulo-servicos">
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <h2 id="titulo-servicos" class="fw-bold">Banho e tosa</h2>
+          <p>Banho a partir de <strong>R$ 50,00</strong> e banho e tosa completa a partir de <strong>R$ 90,00</strong> (pets de pequeno porte). Não pode trazer o seu pet? Contrate a <strong>tele-busca</strong> por apenas mais R$ 20,00.</p>
+          <a class="btn btn-outline-primary" href="servicos.html">Ver serviços e simular preço</a>
+        </div>
+        <div class="col-lg-5">
+          <div class="card border-0 bg-suave p-4 h-100">
+            <h2 class="h5 fw-bold">Dica do dia</h2>
+            <p id="dica-texto" class="mb-3">Escove os dentes do seu cão pelo menos três vezes por semana.</p>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-sm btn-outline-primary" id="btn-proxima-dica">Próxima dica</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" id="btn-pausar-dicas" aria-pressed="false">Pausar dicas</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <hr>
-    <nav aria-label="Links do rodapé">
-      <p><a href="index.html">Início</a> | <a href="produtos.html">Produtos</a> | <a href="servicos.html">Serviços</a> | <a href="sobre.html">Sobre e Contato</a> | <a href="ajuda.html">Ajuda</a></p>
-    </nav>
-    <address>
-      <strong>Patinhas &amp; Cia Pet Shop</strong><br>
-      Rua das Acácias, 120 – Jardim Primavera – São Paulo/SP – CEP 00000-000<br>
-      Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
-      E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
-    </address>
-    <p>
-      <small>
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape mt-5 pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h2>Patinhas &amp; Cia Pet Shop</h2>
+          <address class="mb-0">
+            Rua das Acácias, 120 – Jardim Primavera<br>
+            São Paulo/SP – CEP 00000-000<br>
+            Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
+            E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
+          </address>
+        </div>
+        <div class="col-md-4">
+          <h2>Navegação</h2>
+          <nav aria-label="Links do rodapé">
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html">Início</a></li>
+              <li><a href="produtos.html">Produtos</a></li>
+              <li><a href="servicos.html">Serviços</a></li>
+              <li><a href="agendamento.html">Agendamento</a></li>
+              <li><a href="sobre.html">Sobre e Contato</a></li>
+              <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-4">
+          <h2>Horário de funcionamento</h2>
+          <ul class="list-unstyled mb-0">
+            <li>Segunda a sexta: 8h às 19h</li>
+            <li>Sábado: 8h às 14h</li>
+            <li>Domingo e feriados: fechado</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="small mb-1">
         Site desenvolvido por <strong>João Victor Toledo Duarte</strong> como projeto da disciplina
-        <cite>Fundamentos de Sistemas Web</cite> (Fase 1).<br>
-        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a><br>
-        &copy; 2026 Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
-        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.<br>
+        <cite>Fundamentos de Sistemas Web</cite> (Fase 2).
+        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a>.
+      </p>
+      <p class="small mb-1">
+        &copy; <span class="ano-atual">2026</span> Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
+        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.
         Imagens: ilustrações próprias criadas para este projeto.
-      </small>
-    </p>
-    <p><a href="#topo">Voltar ao topo</a></p>
+      </p>
+      <p class="small mb-0"><a href="#topo">Voltar ao topo</a></p>
+    </div>
   </footer>
+
+  <!-- Região invisível lida por leitores de tela quando o JavaScript avisa algo -->
+  <div id="anuncio-leitor" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <!-- Área onde aparecem os avisos flutuantes (toasts) -->
+  <div id="area-avisos" class="toast-container position-fixed bottom-0 start-0 p-3"></div>
+
+  <!-- Scripts no fim do body: a página aparece antes de o JavaScript carregar -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
