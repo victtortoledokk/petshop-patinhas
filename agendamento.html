@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cadastro do cliente e do pet e agendamento de banho e tosa com tele-busca ou entrega no local.">
+  <meta name="author" content="João Victor Toledo Duarte">
+  <title>Agendamento | Patinhas &amp; Cia Pet Shop</title>
+  <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
+  <!-- Bootstrap 5 (CDN) e, depois, o CSS próprio do site, que personaliza o Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body id="topo">
+  <!-- Link para pular direto ao conteúdo (acessibilidade para teclado e leitores de tela) -->
+  <a class="visually-hidden-focusable pular-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <header>
+    <!-- Barra superior: status da loja (atualizado por JavaScript), contato e recursos de acessibilidade -->
+    <div class="barra-topo py-2">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <p class="mb-0 d-flex flex-wrap align-items-center gap-2">
+          <span id="status-loja" class="badge text-bg-secondary">Seg. a sex. 8h às 19h · sáb. 8h às 14h</span>
+          <span>WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a></span>
+        </p>
+        <div class="barra-acessibilidade d-flex flex-wrap gap-1" role="group" aria-label="Recursos de acessibilidade">
+          <button type="button" class="btn btn-sm" id="btn-diminuir-fonte" aria-label="Diminuir o tamanho do texto">A−</button>
+          <button type="button" class="btn btn-sm" id="btn-fonte-padrao" aria-label="Voltar ao tamanho de texto padrão">A</button>
+          <button type="button" class="btn btn-sm" id="btn-aumentar-fonte" aria-label="Aumentar o tamanho do texto">A+</button>
+          <button type="button" class="btn btn-sm" id="btn-contraste" aria-pressed="false">Alto contraste</button>
+          <button type="button" class="btn btn-sm" id="btn-ouvir" aria-pressed="false"><span class="rotulo-ouvir">Ouvir página</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu de navegação responsivo (Bootstrap navbar): vira um botão "hambúrguer" em telas pequenas -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand navbar-marca d-flex align-items-center gap-2 fw-bold text-primary" href="index.html">
+          <img src="imagens/logo.svg" alt="" width="48" height="48">
+          Patinhas &amp; Cia Pet Shop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+                aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir ou fechar o menu de navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link px-lg-3" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="produtos.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="servicos.html">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="agendamento.html" aria-current="page">Agendamento</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="sobre.html">Sobre e Contato</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="ajuda.html">Ajuda</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+  <main id="conteudo" tabindex="-1">
+    <!-- Faixa de título da página -->
+    <div class="faixa-titulo">
+      <div class="container">
+        <h1 class="fw-bold">Cadastro e agendamento</h1>
+        <p class="lead mb-0">Cadastre-se, cadastre seu pet e escolha o melhor dia para o banho ou a tosa.</p>
+      </div>
+    </div>
+
+    <div class="container py-5">
+      <p>Os campos marcados com <span class="obrigatorio" aria-hidden="true"></span> são obrigatórios. Seus dados são usados apenas para o atendimento.</p>
+
+      <!-- Resumo de erros: aparece no envio se algum campo estiver inválido (js/agendamento.js) -->
+      <div id="resumo-erros" class="alert alert-danger" tabindex="-1" role="alert" hidden>
+        <h2 class="h5 qtd-erros">Há campos para corrigir:</h2>
+        <ul class="mb-0"></ul>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <!-- novalidate: a validação é feita pelo JavaScript, com mensagens acessíveis -->
+          <form id="form-agendamento" novalidate>
+
+            <!-- ============ 1. Dados do cliente ============ -->
+            <fieldset class="bloco-form">
+              <legend>1. Seus dados</legend>
+              <div class="row g-3 mb-3">
+                <div class="col-md-8">
+                  <label for="nome" class="form-label obrigatorio">Nome completo</label>
+                  <input type="text" class="form-control" id="nome" name="nome" required minlength="3" maxlength="80" autocomplete="name" placeholder="Ex.: Maria da Silva" aria-describedby="erro-nome">
+                  <div id="erro-nome" class="invalid-feedback">Informe seu nome completo (pelo menos 3 letras).</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="cpf" class="form-label obrigatorio">CPF</label>
+                  <input type="text" class="form-control" id="cpf" name="cpf" required inputmode="numeric" maxlength="14" placeholder="000.000.000-00" aria-describedby="erro-cpf">
+                  <div id="erro-cpf" class="invalid-feedback">Informe um CPF válido.</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="nascimento" class="form-label">Data de nascimento</label>
+                  <input type="date" class="form-control" id="nascimento" name="nascimento" min="1900-01-01" autocomplete="bday">
+                </div>
+                <div class="col-md-8">
+                  <fieldset class="grupo-opcoes">
+                    <legend class="form-label fs-6 obrigatorio">Sexo</legend>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexo" id="sexo-f" value="feminino" data-rotulo="Sexo" required>
+                    <label class="form-check-label" for="sexo-f">Feminino</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexo" id="sexo-m" value="masculino" data-rotulo="Sexo" required>
+                    <label class="form-check-label" for="sexo-m">Masculino</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexo" id="sexo-o" value="outro" data-rotulo="Sexo" required>
+                    <label class="form-check-label" for="sexo-o">Outro</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sexo" id="sexo-n" value="naoInformar" data-rotulo="Sexo" required>
+                    <label class="form-check-label" for="sexo-n">Prefiro não informar</label>
+                  </div>
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+                  <label for="telefone" class="form-label obrigatorio">Telefone/WhatsApp</label>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" required inputmode="numeric" maxlength="15" autocomplete="tel" placeholder="(11) 90000-0000" aria-describedby="erro-telefone">
+                  <div id="erro-telefone" class="invalid-feedback">Informe o telefone com DDD.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label obrigatorio">E-mail</label>
+                  <input type="email" class="form-control" id="email" name="email" required maxlength="100" autocomplete="email" placeholder="voce@exemplo.com" aria-describedby="erro-email">
+                  <div id="erro-email" class="invalid-feedback">Informe um e-mail válido, como nome@exemplo.com.</div>
+                </div>
+              </div>
+
+              <!-- Endereço: o CEP preenche rua, bairro, cidade e UF automaticamente -->
+              <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                  <label for="cep" class="form-label obrigatorio">CEP</label>
+                  <input type="text" class="form-control" id="cep" name="cep" required inputmode="numeric" maxlength="9" autocomplete="postal-code" placeholder="00000-000" aria-describedby="status-cep erro-cep">
+                  <div id="erro-cep" class="invalid-feedback">Informe o CEP com 8 números.</div>
+                  <div id="status-cep" class="form-text" aria-live="polite"></div>
+                </div>
+                <div class="col-md-8">
+                  <label for="logradouro" class="form-label obrigatorio">Rua/avenida</label>
+                  <input type="text" class="form-control" id="logradouro" name="logradouro" required maxlength="100" autocomplete="address-line1" placeholder="Ex.: Rua das Acácias">
+                  <div class="invalid-feedback">Informe a rua.</div>
+                </div>
+                <div class="col-md-3">
+                  <label for="numero" class="form-label obrigatorio">Número</label>
+                  <input type="text" class="form-control" id="numero" name="numero" required maxlength="10" placeholder="Ex.: 120">
+                  <div class="invalid-feedback">Informe o número.</div>
+                </div>
+                <div class="col-md-5">
+                  <label for="complemento" class="form-label">Complemento</label>
+                  <input type="text" class="form-control" id="complemento" name="complemento" maxlength="50" autocomplete="address-line2" placeholder="Ex.: apto. 12">
+                </div>
+                <div class="col-md-4">
+                  <label for="bairro" class="form-label obrigatorio">Bairro</label>
+                  <input type="text" class="form-control" id="bairro" name="bairro" required maxlength="60">
+                  <div class="invalid-feedback">Informe o bairro.</div>
+                </div>
+                <div class="col-md-8">
+                  <label for="cidade" class="form-label obrigatorio">Cidade</label>
+                  <input type="text" class="form-control" id="cidade" name="cidade" required maxlength="60" autocomplete="address-level2">
+                  <div class="invalid-feedback">Informe a cidade.</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="uf" class="form-label obrigatorio">Estado (UF)</label>
+                  <select class="form-select" id="uf" name="uf" required autocomplete="address-level1">
+                    <option value="">Selecione</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                  </select>
+                  <div class="invalid-feedback">Selecione o estado.</div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- ============ 2. Dados do pet ============ -->
+            <fieldset class="bloco-form">
+              <legend>2. Dados do pet</legend>
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="petNome" class="form-label obrigatorio">Nome do pet</label>
+                  <input type="text" class="form-control" id="petNome" name="petNome" required maxlength="40" placeholder="Ex.: Thor">
+                  <div class="invalid-feedback">Informe o nome do pet.</div>
+                </div>
+                <div class="col-md-6">
+                  <fieldset class="grupo-opcoes">
+                    <legend class="form-label fs-6 obrigatorio">Espécie</legend>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="especie" id="especie-cao" value="cao" data-rotulo="Espécie" required>
+                    <label class="form-check-label" for="especie-cao">Cão</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="especie" id="especie-gato" value="gato" data-rotulo="Espécie" required>
+                    <label class="form-check-label" for="especie-gato">Gato</label>
+                  </div>
+                  </fieldset>
+                </div>
+                <div class="col-md-6">
+                  <label for="raca" class="form-label obrigatorio">Raça</label>
+                  <!-- datalist: sugestões de raças conforme a espécie, mas aceita qualquer texto -->
+                  <input type="text" class="form-control" id="raca" name="raca" required maxlength="40" list="lista-racas" placeholder="Digite ou escolha da lista" aria-describedby="ajuda-raca">
+                  <datalist id="lista-racas"></datalist>
+                  <div id="ajuda-raca" class="form-text">Se não souber, escolha "Sem raça definida (SRD)".</div>
+                  <div class="invalid-feedback">Informe a raça.</div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <label for="petIdade" class="form-label obrigatorio">Idade (anos)</label>
+                  <input type="number" class="form-control" id="petIdade" name="petIdade" required min="0" max="30" step="1" placeholder="Ex.: 3" aria-describedby="ajuda-idade">
+                  <div id="ajuda-idade" class="form-text">Use 0 para filhotes com menos de 1 ano.</div>
+                  <div class="invalid-feedback">Informe uma idade de 0 a 30 anos.</div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <label for="peso" class="form-label">Peso (kg)</label>
+                  <input type="number" class="form-control" id="peso" name="peso" min="0.5" max="100" step="0.1" placeholder="Ex.: 8,5" aria-describedby="aviso-porte">
+                  <div class="invalid-feedback">Informe um peso de 0,5 a 100 kg.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="porte" class="form-label obrigatorio">Porte</label>
+                  <select class="form-select" id="porte" name="porte" required aria-describedby="aviso-porte">
+                    <option value="">Selecione</option>
+                    <option value="pequeno">Pequeno (até 10 kg)</option>
+                    <option value="medio">Médio (de 10 a 25 kg)</option>
+                    <option value="grande">Grande (acima de 25 kg)</option>
+                  </select>
+                  <div class="invalid-feedback">Selecione o porte do pet.</div>
+                  <div id="aviso-porte" class="form-text" aria-live="polite"></div>
+                </div>
+                <div class="col-12">
+                  <label for="observacoes" class="form-label">Observações (alergias, comportamento, cuidados especiais)</label>
+                  <textarea class="form-control" id="observacoes" name="observacoes" rows="3" maxlength="300" placeholder="Ex.: tem medo de secador" aria-describedby="contador-obs"></textarea>
+                  <div id="contador-obs" class="form-text">300 caracteres restantes</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="vacinas" name="vacinas" required data-rotulo="Vacinas">
+                    <label class="form-check-label obrigatorio" for="vacinas">Confirmo que a vacinação do pet está em dia</label>
+                    <div class="invalid-feedback">Para a segurança de todos os animais, só atendemos pets vacinados.</div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- ============ 3. Serviço ============ -->
+            <fieldset class="bloco-form">
+              <legend>3. Serviço</legend>
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <fieldset class="grupo-opcoes">
+                    <legend class="form-label fs-6 obrigatorio">Qual serviço?</legend>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="servico" id="servico-banho" value="banho" data-rotulo="Serviço" required>
+                    <label class="form-check-label" for="servico-banho">Banho</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="servico" id="servico-tosa" value="tosa" data-rotulo="Serviço" required>
+                    <label class="form-check-label" for="servico-tosa">Tosa (inclui banho)</label>
+                  </div>
+                  </fieldset>
+                </div>
+                <div class="col-md-6" id="grupo-tipo-tosa" hidden>
+                  <fieldset class="grupo-opcoes">
+                    <legend class="form-label fs-6 obrigatorio">Tipo de tosa</legend>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipoTosa" id="tosa-higienica" value="higienica" data-rotulo="Tipo de tosa" required>
+                    <label class="form-check-label" for="tosa-higienica">Higiênica (patas, barriga e regiões íntimas)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="tipoTosa" id="tosa-completa" value="completa" data-rotulo="Tipo de tosa" required>
+                    <label class="form-check-label" for="tosa-completa">Completa (corpo inteiro)</label>
+                  </div>
+                  </fieldset>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hidratacao" name="hidratacao">
+                    <label class="form-check-label" for="hidratacao">Adicionar hidratação dos pelos (+ R$ 20,00)</label>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- ============ 4. Agendamento ============ -->
+            <fieldset class="bloco-form">
+              <legend>4. Agendamento</legend>
+              <div class="row g-3 mb-3">
+                <div class="col-12">
+                  <fieldset class="grupo-opcoes">
+                    <legend class="form-label fs-6 obrigatorio">Como o pet chega até nós?</legend>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="modalidade" id="modalidade-telebusca" value="telebusca" data-rotulo="Modalidade" required>
+                    <label class="form-check-label" for="modalidade-telebusca"><strong>Tele-busca</strong>: buscamos e levamos o pet (+ R$ 20,00)</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="modalidade" id="modalidade-local" value="local" data-rotulo="Modalidade" required>
+                    <label class="form-check-label" for="modalidade-local"><strong>Entrega no local</strong>: eu levo o pet até a loja</label>
+                  </div>
+                  </fieldset>
+                </div>
+                <!-- Aparece só quando a tele-busca é escolhida -->
+                <div class="col-12" id="bloco-endereco-busca" hidden>
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="mesmoEndereco" name="mesmoEndereco" checked>
+                    <label class="form-check-label" for="mesmoEndereco">Buscar o pet no endereço informado acima</label>
+                  </div>
+                  <div id="bloco-outro-endereco" hidden>
+                    <label for="enderecoBusca" class="form-label obrigatorio">Endereço para a busca</label>
+                    <textarea class="form-control" id="enderecoBusca" name="enderecoBusca" rows="2" maxlength="150" placeholder="Rua, número, bairro e ponto de referência" disabled></textarea>
+                    <div class="invalid-feedback">Informe o endereço onde devemos buscar o pet.</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <!-- input type="date": o navegador mostra um calendário para escolher o dia -->
+                  <label for="data" class="form-label obrigatorio">Data</label>
+                  <input type="date" class="form-control" id="data" name="data" required aria-describedby="ajuda-data erro-data">
+                  <div id="ajuda-data" class="form-text">De segunda a sábado. Não abrimos aos domingos.</div>
+                  <div id="erro-data" class="invalid-feedback">Escolha uma data válida, de amanhã até 60 dias.</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="horario" class="form-label obrigatorio">Horário</label>
+                  <select class="form-select" id="horario" name="horario" required disabled aria-describedby="ajuda-horario">
+                    <option value="">Escolha primeiro a data</option>
+                  </select>
+                  <div id="ajuda-horario" class="form-text" aria-live="polite"></div>
+                  <div class="invalid-feedback">Escolha um horário.</div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- ============ 5. Confirmação ============ -->
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="termos" name="termos" required data-rotulo="Termos">
+              <label class="form-check-label obrigatorio" for="termos">Li e concordo que o atendimento depende da apresentação da carteira de vacinação</label>
+              <div class="invalid-feedback">É preciso concordar para agendar.</div>
+            </div>
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="novidades" name="novidades">
+              <label class="form-check-label" for="novidades">Quero receber promoções por WhatsApp</label>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button type="submit" class="btn btn-primary btn-lg">Confirmar agendamento</button>
+              <button type="reset" class="btn btn-outline-secondary btn-lg">Limpar formulário</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Resumo atualizado em tempo real -->
+        <aside class="col-lg-4" aria-labelledby="titulo-resumo">
+          <div class="card bg-suave border-0 p-4 resumo-fixo">
+            <h2 id="titulo-resumo" class="h4 fw-bold">Resumo do agendamento</h2>
+            <dl class="mb-2">
+              <dt>Pet</dt><dd id="resumo-pet">—</dd>
+              <dt>Serviço</dt><dd id="resumo-servico">—</dd>
+              <dt>Porte</dt><dd id="resumo-porte">—</dd>
+              <dt>Modalidade</dt><dd id="resumo-modalidade">—</dd>
+              <dt>Data e horário</dt><dd id="resumo-data">—</dd>
+            </dl>
+            <p class="mb-0">Valor total:</p>
+            <p id="resumo-total" class="resumo-total mb-0" aria-live="polite">R$ —</p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Agendamentos já feitos neste navegador -->
+      <section class="mt-5" aria-labelledby="titulo-meus-agendamentos">
+        <h2 id="titulo-meus-agendamentos" class="fw-bold" tabindex="-1">Meus agendamentos</h2>
+        <p id="sem-agendamentos" class="text-body-secondary">Você ainda não tem agendamentos neste navegador.</p>
+        <div class="table-responsive">
+          <table class="table table-striped align-middle" id="tabela-agendamentos" hidden>
+            <caption>Agendamentos salvos neste navegador</caption>
+            <thead>
+              <tr>
+                <th scope="col">Data e horário</th>
+                <th scope="col">Pet</th>
+                <th scope="col">Serviço</th>
+                <th scope="col">Modalidade</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Protocolo</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody id="lista-agendamentos"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- Janela de confirmação (Bootstrap modal) -->
+    <div class="modal fade" id="modal-confirmacao" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="titulo-confirmacao" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title h4" id="titulo-confirmacao">Agendamento confirmado!</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+          </div>
+          <div class="modal-body">
+            <p>Protocolo: <strong id="confirmacao-protocolo"></strong></p>
+            <dl class="row mb-0" id="confirmacao-detalhes"></dl>
+            <p class="small text-body-secondary mt-3 mb-0">Enviaremos a confirmação pelo WhatsApp. Lembre-se da carteira de vacinação.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape mt-5 pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h2>Patinhas &amp; Cia Pet Shop</h2>
+          <address class="mb-0">
+            Rua das Acácias, 120 – Jardim Primavera<br>
+            São Paulo/SP – CEP 00000-000<br>
+            Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
+            E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
+          </address>
+        </div>
+        <div class="col-md-4">
+          <h2>Navegação</h2>
+          <nav aria-label="Links do rodapé">
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html">Início</a></li>
+              <li><a href="produtos.html">Produtos</a></li>
+              <li><a href="servicos.html">Serviços</a></li>
+              <li><a href="agendamento.html">Agendamento</a></li>
+              <li><a href="sobre.html">Sobre e Contato</a></li>
+              <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-4">
+          <h2>Horário de funcionamento</h2>
+          <ul class="list-unstyled mb-0">
+            <li>Segunda a sexta: 8h às 19h</li>
+            <li>Sábado: 8h às 14h</li>
+            <li>Domingo e feriados: fechado</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="small mb-1">
+        Site desenvolvido por <strong>João Victor Toledo Duarte</strong> como projeto da disciplina
+        <cite>Fundamentos de Sistemas Web</cite> (Fase 2).
+        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a>.
+      </p>
+      <p class="small mb-1">
+        &copy; <span class="ano-atual">2026</span> Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
+        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.
+        Imagens: ilustrações próprias criadas para este projeto.
+      </p>
+      <p class="small mb-0"><a href="#topo">Voltar ao topo</a></p>
+    </div>
+  </footer>
+
+  <!-- Região invisível lida por leitores de tela quando o JavaScript avisa algo -->
+  <div id="anuncio-leitor" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <!-- Área onde aparecem os avisos flutuantes (toasts) -->
+  <div id="area-avisos" class="toast-container position-fixed bottom-0 start-0 p-3"></div>
+
+  <!-- Scripts no fim do body: a página aparece antes de o JavaScript carregar -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/agendamento.js"></script>
+</body>
+</html>
