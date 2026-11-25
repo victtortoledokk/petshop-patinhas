@@ -3,118 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ajuda: como navegar e usar as funcionalidades do site do Patinhas & Cia Pet Shop.">
+  <meta name="description" content="Ajuda: como usar as funcionalidades e os recursos de acessibilidade do site.">
   <meta name="author" content="João Victor Toledo Duarte">
   <title>Ajuda | Patinhas &amp; Cia Pet Shop</title>
+  <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
+  <!-- Bootstrap 5 (CDN) e, depois, o CSS próprio do site, que personaliza o Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body id="topo">
+  <!-- Link para pular direto ao conteúdo (acessibilidade para teclado e leitores de tela) -->
+  <a class="visually-hidden-focusable pular-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- ===================== CABEÇALHO ===================== -->
   <header>
-    <a href="index.html"><img src="imagens/logo.svg" alt="Logotipo do Patinhas &amp; Cia Pet Shop: uma pegada de pata branca em um círculo verde" width="90" height="90"></a>
-    <h1>Patinhas &amp; Cia Pet Shop</h1>
-    <p><em>Carinho, saúde e bem-estar para o seu melhor amigo.</em></p>
-    <p>
-      <strong>Endereço:</strong> Rua das Acácias, 120 – Jardim Primavera – São Paulo/SP<br>
-      <strong>Telefone/WhatsApp:</strong> <a href="tel:+5511900000000">(11) 90000-0000</a> |
-      <strong>E-mail:</strong> <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a><br>
-      <strong>Horário:</strong> segunda a sexta, 8h às 19h; sábado, 8h às 14h
-    </p>
-    <nav aria-label="Menu principal">
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="sobre.html">Sobre e Contato</a></li>
-        <li><a href="ajuda.html" aria-current="page"><strong>Ajuda</strong></a></li>
-      </ul>
+    <!-- Barra superior: status da loja (atualizado por JavaScript), contato e recursos de acessibilidade -->
+    <div class="barra-topo py-2">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <p class="mb-0 d-flex flex-wrap align-items-center gap-2">
+          <span id="status-loja" class="badge text-bg-secondary">Seg. a sex. 8h às 19h · sáb. 8h às 14h</span>
+          <span>WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a></span>
+        </p>
+        <div class="barra-acessibilidade d-flex flex-wrap gap-1" role="group" aria-label="Recursos de acessibilidade">
+          <button type="button" class="btn btn-sm" id="btn-diminuir-fonte" aria-label="Diminuir o tamanho do texto">A−</button>
+          <button type="button" class="btn btn-sm" id="btn-fonte-padrao" aria-label="Voltar ao tamanho de texto padrão">A</button>
+          <button type="button" class="btn btn-sm" id="btn-aumentar-fonte" aria-label="Aumentar o tamanho do texto">A+</button>
+          <button type="button" class="btn btn-sm" id="btn-contraste" aria-pressed="false">Alto contraste</button>
+          <button type="button" class="btn btn-sm" id="btn-ouvir" aria-pressed="false"><span class="rotulo-ouvir">Ouvir página</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu de navegação responsivo (Bootstrap navbar): vira um botão "hambúrguer" em telas pequenas -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand navbar-marca d-flex align-items-center gap-2 fw-bold text-primary" href="index.html">
+          <img src="imagens/logo.svg" alt="" width="48" height="48">
+          Patinhas &amp; Cia Pet Shop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+                aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir ou fechar o menu de navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link px-lg-3" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="produtos.html">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="servicos.html">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="agendamento.html">Agendamento</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="sobre.html">Sobre e Contato</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="ajuda.html" aria-current="page">Ajuda</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <hr>
   </header>
 
-  <main>
-    <h2>Ajuda: como usar o site</h2>
-    <p>Esta página descreve as funcionalidades do site do Patinhas &amp; Cia Pet Shop e como navegar por ele.</p>
+  <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+  <main id="conteudo" tabindex="-1">
+    <!-- Faixa de título da página -->
+    <div class="faixa-titulo">
+      <div class="container">
+        <h1 class="fw-bold">Ajuda</h1>
+        <p class="lead mb-0">Como usar o site do Patinhas &amp; Cia Pet Shop.</p>
+      </div>
+    </div>
 
-    <section>
-      <h3>1. Estrutura das páginas</h3>
-      <p>Todas as páginas seguem a mesma estrutura:</p>
-      <ul>
-        <li><strong>Cabeçalho:</strong> logotipo, nome e slogan do petshop, endereço, telefone, e-mail, horário de funcionamento e o <strong>menu de navegação</strong>. A página em que você está aparece em negrito no menu.</li>
-        <li><strong>Corpo (conteúdo principal):</strong> muda conforme a página escolhida.</li>
-        <li><strong>Rodapé:</strong> links de navegação, dados de contato, informações de autoria do site e direitos autorais, além do link "Voltar ao topo".</li>
-      </ul>
-    </section>
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-8">
+          <section aria-labelledby="ajuda-estrutura" class="mb-5">
+            <h2 id="ajuda-estrutura" class="fw-bold">1. Estrutura das páginas</h2>
+            <ul>
+              <li><strong>Barra superior:</strong> mostra se a loja está aberta agora (atualizado automaticamente), o WhatsApp e os botões de acessibilidade.</li>
+              <li><strong>Menu:</strong> leva a todas as páginas. Em celulares, ele fica recolhido no botão de três linhas. A página atual aparece sublinhada.</li>
+              <li><strong>Rodapé:</strong> endereço, contatos, links, horário de funcionamento, autoria do site e o link "Voltar ao topo".</li>
+            </ul>
+          </section>
 
-    <section>
-      <h3>2. Páginas disponíveis</h3>
-      <dl>
-        <dt><a href="index.html">Início</a></dt>
-        <dd>Apresentação do petshop, atalhos para as três categorias de produtos, produtos em destaque e resumo dos serviços.</dd>
-        <dt><a href="produtos.html">Produtos</a></dt>
-        <dd>Lista os produtos divididos em três categorias: <em>Acessórios</em>, <em>Rações não perecíveis</em> e <em>Higiene e limpeza</em>. Cada produto mostra foto, nome, descrição e valor. No topo há um índice com links que levam direto a cada categoria.</dd>
-        <dt><a href="servicos.html">Serviços</a></dt>
-        <dd>Descreve os serviços de banho, tosa e tele-busca e apresenta a tabela de preços por porte do animal, com e sem tele-busca, além das instruções para agendar.</dd>
-        <dt><a href="sobre.html">Sobre e Contato</a></dt>
-        <dd>História, missão e valores do petshop, dados de contato, tabela de horários e o formulário "Fale conosco".</dd>
-        <dt><a href="ajuda.html">Ajuda</a></dt>
-        <dd>Esta página.</dd>
-      </dl>
-    </section>
+          <section aria-labelledby="ajuda-paginas" class="mb-5">
+            <h2 id="ajuda-paginas" class="fw-bold">2. Páginas e funcionalidades</h2>
+            <dl>
+              <dt><a href="index.html">Início</a></dt>
+              <dd>Carrossel de destaques que troca sozinho a cada 6 segundos (com botões para voltar, avançar e pausar), saudação e relógio que mudam conforme a hora, promoção com contagem regressiva, categorias, destaques da semana e uma dica do dia que muda a cada 8 segundos.</dd>
+              <dt><a href="produtos.html">Produtos</a></dt>
+              <dd>Nove produtos em três categorias, cada um com foto, descrição e preço. Use os botões de categoria ou o campo de busca para filtrar. O botão "Adicionar ao carrinho" guarda o produto no carrinho, que abre pelo botão "Carrinho" e mostra o total.</dd>
+              <dt><a href="servicos.html">Serviços</a></dt>
+              <dd>Banho, tosa (que inclui banho) e tele-busca, com a tabela de preços por porte. O simulador calcula o valor na hora e o botão "Agendar com estas escolhas" abre o agendamento já preenchido.</dd>
+              <dt><a href="agendamento.html">Agendamento</a></dt>
+              <dd>Formulário de cadastro do cliente e do pet, escolha do serviço, da modalidade (tele-busca ou entrega no local), do dia no calendário e do horário. O resumo ao lado mostra o valor total em tempo real.</dd>
+              <dt><a href="sobre.html">Sobre e Contato</a></dt>
+              <dd>História, missão, valores, contatos, horários e o formulário "Fale conosco".</dd>
+            </dl>
+          </section>
 
-    <section>
-      <h3>3. Como encontrar um produto</h3>
-      <ol>
-        <li>Clique em <strong>Produtos</strong> no menu do cabeçalho.</li>
-        <li>No índice "Nossos produtos", clique na categoria desejada.</li>
-        <li>Veja a foto, a descrição e o valor de cada item. Use o link "Voltar às categorias" para escolher outra categoria.</li>
-      </ol>
-    </section>
+          <section aria-labelledby="ajuda-agendar" class="mb-5">
+            <h2 id="ajuda-agendar" class="fw-bold">3. Como agendar banho ou tosa</h2>
+            <ol>
+              <li>Abra a página <a href="agendamento.html">Agendamento</a>.</li>
+              <li>Preencha seus dados. Ao digitar o CEP, rua, bairro, cidade e estado são preenchidos automaticamente.</li>
+              <li>Preencha os dados do pet. Se informar o peso, o porte é sugerido automaticamente.</li>
+              <li>Escolha <strong>Banho</strong> ou <strong>Tosa</strong> (e o tipo de tosa) e, se quiser, a hidratação.</li>
+              <li>Escolha <strong>Tele-busca</strong> ou <strong>Entrega no local</strong>. Na tele-busca, informe se buscamos no mesmo endereço do cadastro.</li>
+              <li>Escolha a data no calendário (segunda a sábado, de amanhã até 60 dias) e um horário livre.</li>
+              <li>Clique em "Confirmar agendamento". Se faltar algo, aparece uma lista com os campos a corrigir; cada item leva direto ao campo.</li>
+              <li>Anote o protocolo. O agendamento aparece em "Meus agendamentos", onde também pode ser cancelado.</li>
+            </ol>
+          </section>
 
-    <section>
-      <h3>4. Como consultar o preço de banho e tosa</h3>
-      <ol>
-        <li>Clique em <strong>Serviços</strong> no menu.</li>
-        <li>Na tabela de preços, localize o serviço (banho, banho e tosa higiênica ou banho e tosa completa) e o porte do seu pet.</li>
-        <li>Escolha a coluna "Sem tele-busca" (você leva o pet até a loja) ou "Com tele-busca" (nós buscamos e levamos o pet).</li>
-      </ol>
-    </section>
+          <section aria-labelledby="ajuda-acessibilidade" class="mb-5">
+            <h2 id="ajuda-acessibilidade" class="fw-bold">4. Recursos de acessibilidade</h2>
+            <ul>
+              <li><strong>Texto alternativo (alt)</strong> em todas as imagens, com a descrição do que aparece nelas. Imagens apenas decorativas têm alt vazio para não repetir informação.</li>
+              <li><strong>Ouvir página:</strong> lê em voz alta o conteúdo principal (use o mesmo botão para parar).</li>
+              <li><strong>A−, A e A+:</strong> diminuem, restauram ou aumentam o tamanho do texto de todo o site.</li>
+              <li><strong>Alto contraste:</strong> fundo preto, texto branco e links amarelos. A escolha fica salva para as próximas visitas.</li>
+              <li><strong>Navegação por teclado:</strong> o primeiro Tab mostra o link "Pular para o conteúdo principal"; todos os elementos têm contorno de foco bem visível.</li>
+              <li><strong>Leitores de tela:</strong> estrutura com cabeçalho, menu, conteúdo e rodapé; títulos em ordem; rótulos em todos os campos; mensagens de erro, totais e avisos anunciados automaticamente.</li>
+              <li><strong>Carrossel e dicas:</strong> podem ser pausados. Quem configurou o sistema para reduzir movimento não recebe troca automática.</li>
+            </ul>
+          </section>
 
-    <section>
-      <h3>5. Como entrar em contato</h3>
-      <p>Os links de telefone e e-mail do cabeçalho e do rodapé abrem diretamente o discador do celular ou o programa de e-mail. Na página <a href="sobre.html#fale-conosco">Sobre e Contato</a> também há um formulário de mensagem.</p>
-    </section>
+          <section aria-labelledby="ajuda-limites">
+            <h2 id="ajuda-limites" class="fw-bold">5. Observações</h2>
+            <ul>
+              <li>O Patinhas &amp; Cia é uma empresa fictícia: preços, endereço e contatos são ilustrativos.</li>
+              <li>Agendamentos e carrinho ficam salvos apenas neste navegador. O CPF não é salvo.</li>
+              <li>O site não tem servidor nem pagamento online: o pedido e o agendamento são uma simulação.</li>
+            </ul>
+          </section>
+        </div>
 
-    <section>
-      <h3>6. Limitações desta versão (Fase 1)</h3>
-      <ul>
-        <li>O site foi construído somente com HTML, sem CSS, Bootstrap ou JavaScript, conforme o enunciado da Fase 1. Por isso, a aparência é a padrão do navegador.</li>
-        <li>O formulário de contato ainda não envia mensagens; o envio, as validações e o carrinho de compras serão implementados na Fase 2.</li>
-        <li>O Patinhas &amp; Cia é uma empresa fictícia: preços, endereço e contatos são apenas ilustrativos.</li>
-      </ul>
-    </section>
+        <aside class="col-lg-4" aria-labelledby="ajuda-atalhos">
+          <div class="card bg-suave border-0 p-4 resumo-fixo">
+            <h2 id="ajuda-atalhos" class="h5 fw-bold">Atalhos úteis</h2>
+            <ul class="mb-0">
+              <li><a href="agendamento.html">Agendar banho ou tosa</a></li>
+              <li><a href="servicos.html#titulo-simulador">Simular preço</a></li>
+              <li><a href="produtos.html">Ver produtos</a></li>
+              <li><a href="sobre.html#fale-conosco">Enviar mensagem</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <hr>
-    <nav aria-label="Links do rodapé">
-      <p><a href="index.html">Início</a> | <a href="produtos.html">Produtos</a> | <a href="servicos.html">Serviços</a> | <a href="sobre.html">Sobre e Contato</a> | <a href="ajuda.html">Ajuda</a></p>
-    </nav>
-    <address>
-      <strong>Patinhas &amp; Cia Pet Shop</strong><br>
-      Rua das Acácias, 120 – Jardim Primavera – São Paulo/SP – CEP 00000-000<br>
-      Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
-      E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
-    </address>
-    <p>
-      <small>
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape mt-5 pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h2>Patinhas &amp; Cia Pet Shop</h2>
+          <address class="mb-0">
+            Rua das Acácias, 120 – Jardim Primavera<br>
+            São Paulo/SP – CEP 00000-000<br>
+            Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
+            E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
+          </address>
+        </div>
+        <div class="col-md-4">
+          <h2>Navegação</h2>
+          <nav aria-label="Links do rodapé">
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html">Início</a></li>
+              <li><a href="produtos.html">Produtos</a></li>
+              <li><a href="servicos.html">Serviços</a></li>
+              <li><a href="agendamento.html">Agendamento</a></li>
+              <li><a href="sobre.html">Sobre e Contato</a></li>
+              <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-4">
+          <h2>Horário de funcionamento</h2>
+          <ul class="list-unstyled mb-0">
+            <li>Segunda a sexta: 8h às 19h</li>
+            <li>Sábado: 8h às 14h</li>
+            <li>Domingo e feriados: fechado</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="small mb-1">
         Site desenvolvido por <strong>João Victor Toledo Duarte</strong> como projeto da disciplina
-        <cite>Fundamentos de Sistemas Web</cite> (Fase 1).<br>
-        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a><br>
-        &copy; 2026 Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
-        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.<br>
+        <cite>Fundamentos de Sistemas Web</cite> (Fase 2).
+        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a>.
+      </p>
+      <p class="small mb-1">
+        &copy; <span class="ano-atual">2026</span> Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
+        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.
         Imagens: ilustrações próprias criadas para este projeto.
-      </small>
-    </p>
-    <p><a href="#topo">Voltar ao topo</a></p>
+      </p>
+      <p class="small mb-0"><a href="#topo">Voltar ao topo</a></p>
+    </div>
   </footer>
+
+  <!-- Região invisível lida por leitores de tela quando o JavaScript avisa algo -->
+  <div id="anuncio-leitor" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <!-- Área onde aparecem os avisos flutuantes (toasts) -->
+  <div id="area-avisos" class="toast-container position-fixed bottom-0 start-0 p-3"></div>
+
+  <!-- Scripts no fim do body: a página aparece antes de o JavaScript carregar -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
