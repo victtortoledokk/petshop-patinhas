@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
   function mascaraTelefone(valor) {
     const n = somenteNumeros(valor).slice(0, 11);
     if (n.length <= 10) {
-      /* Fixo: (11) 3000-0000 */
+      /* Fixo: (51) 3000-0000 */
       return n.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{4})(\d)/, '$1-$2');
     }
-    /* Celular: (11) 90000-0000 */
+    /* Celular: (51) 90000-0000 */
     return n.replace(/(\d{2})(\d)/, '($1) $2').replace(/(\d{5})(\d)/, '$1-$2');
   }
 
