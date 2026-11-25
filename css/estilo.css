@@ -1,0 +1,448 @@
+/* ==========================================================================
+   Patinhas & Cia Pet Shop – folha de estilos própria (Fase 2)
+   Autor: João Victor Toledo Duarte
+   Disciplina: Fundamentos de Sistemas Web
+
+   Este arquivo complementa o Bootstrap 5. Ele define:
+   1. Variáveis de cor da marca
+   2. Estilos gerais e de foco (acessibilidade)
+   3. Cabeçalho, barra de acessibilidade e menu
+   4. Carrossel
+   5. Cards de produtos e serviços
+   6. Formulários
+   7. Rodapé
+   8. Modo de alto contraste
+   9. Preferência por movimento reduzido
+   ========================================================================== */
+
+/* 1. Variáveis de cor ------------------------------------------------------
+   As cores foram escolhidas com contraste mínimo de 4,5:1 sobre o branco
+   (critério WCAG AA para texto normal). */
+:root {
+  --cor-primaria: #1f6b5a;        /* verde da marca (contraste 6,3:1 com branco) */
+  --cor-primaria-escura: #154a3e;
+  --cor-destaque: #a8481a;        /* laranja escuro para preços (5,8:1 no branco; 5,0:1 no bege) */
+  --cor-fundo-suave: #f4efe6;     /* bege claro usado em seções */
+  --cor-texto: #212529;
+  --raio-borda: 1rem;
+
+  /* Personaliza a cor primária do Bootstrap para usar a cor da marca */
+  --bs-primary: #1f6b5a;
+  --bs-primary-rgb: 31, 107, 90;
+  --bs-link-color: #1f6b5a;
+  --bs-link-color-rgb: 31, 107, 90;
+  --bs-link-hover-color: #154a3e;
+  --bs-link-hover-color-rgb: 21, 74, 62;
+}
+
+/* 2. Estilos gerais ------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;  /* rolagem suave ao clicar em âncoras */
+}
+
+body {
+  color: var(--cor-texto);
+  background-color: #ffffff;
+}
+
+/* Foco bem visível em todos os elementos navegáveis pelo teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.carousel-control-prev:focus-visible,
+.carousel-control-next:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #ffbf47 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #0b0c0c !important;
+}
+
+/* O <main> recebe foco pelo link "Pular para o conteúdo"; sem contorno extra */
+main:focus {
+  outline: none;
+}
+
+/* Link "Pular para o conteúdo": invisível até receber foco pelo teclado */
+.pular-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  background: #ffbf47;
+  color: #0b0c0c;
+  font-weight: 700;
+  border-radius: 0.5rem;
+}
+
+/* Botões da cor primária usando a cor da marca */
+.btn-primary {
+  --bs-btn-bg: var(--cor-primaria);
+  --bs-btn-border-color: var(--cor-primaria);
+  --bs-btn-hover-bg: var(--cor-primaria-escura);
+  --bs-btn-hover-border-color: var(--cor-primaria-escura);
+  --bs-btn-active-bg: var(--cor-primaria-escura);
+  --bs-btn-active-border-color: var(--cor-primaria-escura);
+  --bs-btn-disabled-bg: var(--cor-primaria);
+  --bs-btn-disabled-border-color: var(--cor-primaria);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--cor-primaria);
+  --bs-btn-border-color: var(--cor-primaria);
+  --bs-btn-hover-bg: var(--cor-primaria);
+  --bs-btn-hover-border-color: var(--cor-primaria);
+  --bs-btn-active-bg: var(--cor-primaria);
+  --bs-btn-active-border-color: var(--cor-primaria);
+}
+
+.text-primary {
+  color: var(--cor-primaria) !important;
+}
+
+.bg-suave {
+  background-color: var(--cor-fundo-suave);
+}
+
+/* Faixa de título no topo das páginas internas */
+.faixa-titulo {
+  background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-escura));
+  color: #ffffff;
+  padding: 2.5rem 0;
+}
+
+.faixa-titulo a {
+  color: #ffffff;
+}
+
+.preco {
+  color: var(--cor-destaque);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* 3. Cabeçalho ------------------------------------------------------------ */
+.barra-topo {
+  background-color: var(--cor-primaria-escura);
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.barra-topo a {
+  color: #ffffff;
+}
+
+/* Botões da barra de acessibilidade */
+.barra-acessibilidade .btn {
+  --bs-btn-padding-y: 0.15rem;
+  --bs-btn-padding-x: 0.55rem;
+  --bs-btn-font-size: 0.85rem;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.barra-acessibilidade .btn:hover,
+.barra-acessibilidade .btn[aria-pressed="true"] {
+  background-color: #ffffff;
+  color: var(--cor-primaria-escura);
+}
+
+.navbar-marca img {
+  width: 48px;
+  height: 48px;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: var(--cor-texto);
+}
+
+/* Página atual destacada no menu (além do aria-current para leitores de tela) */
+.navbar .nav-link[aria-current="page"] {
+  color: var(--cor-primaria);
+  font-weight: 700;
+  border-bottom: 3px solid var(--cor-primaria);
+}
+
+/* 4. Carrossel ------------------------------------------------------------ */
+.carousel-item img {
+  object-fit: cover;
+  height: 420px;
+}
+
+/* Setas de avançar/voltar mais estreitas, para não ficarem sob a legenda */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 7%;
+}
+
+/* Legenda com fundo escuro para garantir leitura sobre a imagem */
+.carousel-caption {
+  left: 9%;
+  right: auto;
+  bottom: 50%;
+  transform: translateY(50%);
+  max-width: 46%;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 1.5rem;
+  border-radius: var(--raio-borda);
+}
+
+.carousel-caption .h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* Botão de pausar/continuar o carrossel (requisito WCAG 2.2.2) */
+.btn-carrossel-pausa {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 5;
+}
+
+@media (max-width: 767.98px) {
+  /* No celular a legenda vai para baixo da ilustração, sem cobri-la */
+  .carousel-item img {
+    height: 240px;
+    object-fit: cover;
+    object-position: 85% center;
+  }
+
+  .carousel-caption {
+    position: static;
+    transform: none;
+    max-width: none;
+    border-radius: 0;
+    background: var(--cor-primaria-escura);
+    padding: 1rem 1rem 3rem;
+  }
+
+  .carousel-caption .h2 {
+    font-size: 1.3rem;
+  }
+
+  /* Setas e botão de pausa ficam sobre a ilustração */
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 12%;
+    height: 240px;
+  }
+
+  .btn-carrossel-pausa {
+    top: 1rem;
+    bottom: auto;
+  }
+}
+
+/* Faixa da promoção com contagem regressiva */
+.faixa-promocao {
+  background-color: #fff3cd;
+  border-left: 6px solid var(--cor-destaque);
+}
+
+.contador {
+  font-variant-numeric: tabular-nums;  /* números com largura fixa: o texto não "pula" */
+  font-weight: 700;
+  color: var(--cor-destaque);
+}
+
+.relogio {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Dica rotativa: transição suave de opacidade */
+#dica-texto {
+  transition: opacity 0.4s ease;
+}
+
+/* 5. Cards ---------------------------------------------------------------- */
+.card {
+  border-radius: var(--raio-borda);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-produto:hover,
+.card-produto:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12);
+}
+
+.card-produto img,
+.card-servico img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 1rem auto 0;
+  display: block;
+}
+
+.badge-categoria {
+  background-color: var(--cor-fundo-suave);
+  color: var(--cor-primaria-escura);
+}
+
+.card-categoria {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-categoria:hover .card {
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12);
+}
+
+/* Tabela de preços: substitui o atributo border="1" usado na fase 1 */
+.tabela-precos th[scope="rowgroup"] {
+  background-color: var(--cor-fundo-suave);
+  vertical-align: middle;
+}
+
+/* 6. Formulários ---------------------------------------------------------- */
+fieldset.bloco-form {
+  border: 1px solid #ced4da;
+  border-radius: var(--raio-borda);
+  padding: 1.25rem 1.25rem 0.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #ffffff;
+}
+
+fieldset.bloco-form legend {
+  float: none;
+  width: auto;
+  padding: 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+}
+
+/* Rádios e caixas de seleção marcados na cor da marca (em vez do azul padrão) */
+.form-check-input:checked {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--cor-primaria);
+}
+
+/* Asterisco dos campos obrigatórios */
+.obrigatorio::after {
+  content: " *";
+  color: #b02a37;
+}
+
+/* Grupos de opções (radio/checkbox) destacados quando inválidos */
+.was-validated .grupo-opcoes:has(input:invalid) {
+  border: 1px solid #b02a37;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+/* Resumo do agendamento fica "grudado" ao rolar em telas grandes */
+@media (min-width: 992px) {
+  .resumo-fixo {
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+.resumo-total {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cor-destaque);
+}
+
+/* 7. Rodapé --------------------------------------------------------------- */
+.rodape {
+  background-color: #1b1f1e;
+  color: #e9ecef;
+}
+
+.rodape a {
+  color: #ffffff;
+}
+
+.rodape h2 {
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+/* 8. Alto contraste -------------------------------------------------------
+   Ativado pelo botão "Alto contraste" (classe adicionada ao <body> pelo
+   JavaScript). Fundo preto, texto branco e links amarelos. */
+body.alto-contraste,
+body.alto-contraste .bg-suave,
+body.alto-contraste .bg-white,
+body.alto-contraste .bg-light,
+body.alto-contraste .card,
+body.alto-contraste .navbar,
+body.alto-contraste .barra-topo,
+body.alto-contraste .faixa-titulo,
+body.alto-contraste .faixa-promocao,
+body.alto-contraste .rodape,
+body.alto-contraste fieldset.bloco-form,
+body.alto-contraste .modal-content,
+body.alto-contraste .offcanvas,
+body.alto-contraste .table,
+body.alto-contraste .table > :not(caption) > * > *,
+body.alto-contraste .list-group-item,
+body.alto-contraste .toast,
+body.alto-contraste .alert {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+body.alto-contraste a,
+body.alto-contraste .nav-link,
+body.alto-contraste .navbar-brand,
+body.alto-contraste .preco,
+body.alto-contraste .contador,
+body.alto-contraste .resumo-total,
+body.alto-contraste .text-primary,
+body.alto-contraste legend {
+  color: #ffff00 !important;
+}
+
+body.alto-contraste .btn,
+body.alto-contraste .form-control,
+body.alto-contraste .form-select {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffff00 !important;
+}
+
+body.alto-contraste .text-muted,
+body.alto-contraste .text-body-secondary,
+body.alto-contraste .form-text {
+  color: #ffffff !important;
+}
+
+body.alto-contraste .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+body.alto-contraste .badge {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* 9. Movimento reduzido ---------------------------------------------------
+   Respeita usuários que configuraram o sistema para reduzir animações. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
