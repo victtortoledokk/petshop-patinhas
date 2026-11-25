@@ -3,184 +3,295 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Produtos do Patinhas & Cia Pet Shop: acessórios, rações não perecíveis e produtos de higiene e limpeza.">
+  <meta name="description" content="Produtos do Patinhas & Cia Pet Shop: acessórios, rações não perecíveis e higiene e limpeza.">
   <meta name="author" content="João Victor Toledo Duarte">
   <title>Produtos | Patinhas &amp; Cia Pet Shop</title>
+  <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
+  <!-- Bootstrap 5 (CDN) e, depois, o CSS próprio do site, que personaliza o Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body id="topo">
+  <!-- Link para pular direto ao conteúdo (acessibilidade para teclado e leitores de tela) -->
+  <a class="visually-hidden-focusable pular-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+  <!-- ===================== CABEÇALHO ===================== -->
   <header>
-    <a href="index.html"><img src="imagens/logo.svg" alt="Logotipo do Patinhas &amp; Cia Pet Shop: uma pegada de pata branca em um círculo verde" width="90" height="90"></a>
-    <h1>Patinhas &amp; Cia Pet Shop</h1>
-    <p><em>Carinho, saúde e bem-estar para o seu melhor amigo.</em></p>
-    <p>
-      <strong>Endereço:</strong> Rua das Acácias, 120 – Jardim Primavera – São Paulo/SP<br>
-      <strong>Telefone/WhatsApp:</strong> <a href="tel:+5511900000000">(11) 90000-0000</a> |
-      <strong>E-mail:</strong> <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a><br>
-      <strong>Horário:</strong> segunda a sexta, 8h às 19h; sábado, 8h às 14h
-    </p>
-    <nav aria-label="Menu principal">
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="produtos.html" aria-current="page"><strong>Produtos</strong></a></li>
-        <li><a href="servicos.html">Serviços</a></li>
-        <li><a href="sobre.html">Sobre e Contato</a></li>
-        <li><a href="ajuda.html">Ajuda</a></li>
-      </ul>
+    <!-- Barra superior: status da loja (atualizado por JavaScript), contato e recursos de acessibilidade -->
+    <div class="barra-topo py-2">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <p class="mb-0 d-flex flex-wrap align-items-center gap-2">
+          <span id="status-loja" class="badge text-bg-secondary">Seg. a sex. 8h às 19h · sáb. 8h às 14h</span>
+          <span>WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a></span>
+        </p>
+        <div class="barra-acessibilidade d-flex flex-wrap gap-1" role="group" aria-label="Recursos de acessibilidade">
+          <button type="button" class="btn btn-sm" id="btn-diminuir-fonte" aria-label="Diminuir o tamanho do texto">A−</button>
+          <button type="button" class="btn btn-sm" id="btn-fonte-padrao" aria-label="Voltar ao tamanho de texto padrão">A</button>
+          <button type="button" class="btn btn-sm" id="btn-aumentar-fonte" aria-label="Aumentar o tamanho do texto">A+</button>
+          <button type="button" class="btn btn-sm" id="btn-contraste" aria-pressed="false">Alto contraste</button>
+          <button type="button" class="btn btn-sm" id="btn-ouvir" aria-pressed="false"><span class="rotulo-ouvir">Ouvir página</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu de navegação responsivo (Bootstrap navbar): vira um botão "hambúrguer" em telas pequenas -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm" aria-label="Menu principal">
+      <div class="container">
+        <a class="navbar-brand navbar-marca d-flex align-items-center gap-2 fw-bold text-primary" href="index.html">
+          <img src="imagens/logo.svg" alt="" width="48" height="48">
+          Patinhas &amp; Cia Pet Shop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal"
+                aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir ou fechar o menu de navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu-principal">
+          <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link px-lg-3" href="index.html">Início</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="produtos.html" aria-current="page">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="servicos.html">Serviços</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="agendamento.html">Agendamento</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="sobre.html">Sobre e Contato</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3" href="ajuda.html">Ajuda</a></li>
+          </ul>
+        </div>
+      </div>
     </nav>
-    <hr>
   </header>
 
-  <main>
-    <h2 id="categorias">Nossos produtos</h2>
-    <p>Confira os produtos disponíveis na loja, organizados em três categorias. Clique em uma categoria para ir direto a ela:</p>
-    <nav aria-label="Categorias de produtos">
-      <ol>
-        <li><a href="#acessorios">Acessórios</a></li>
-        <li><a href="#racoes">Rações não perecíveis</a></li>
-        <li><a href="#higiene">Higiene e limpeza</a></li>
-      </ol>
-    </nav>
-    <hr>
+  <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+  <main id="conteudo" tabindex="-1">
+    <!-- Faixa de título da página -->
+    <div class="faixa-titulo">
+      <div class="container">
+        <h1 class="fw-bold">Nossos produtos</h1>
+        <p class="lead mb-0">Acessórios, rações não perecíveis e produtos de higiene e limpeza.</p>
+      </div>
+    </div>
 
-    <section id="acessorios">
-      <h2>Acessórios</h2>
-      <p>Roupas, brinquedos, camas e outros itens para o conforto e a diversão do seu pet.</p>
+    <div class="container py-4">
+      <!-- Ferramentas: filtro por categoria, busca e carrinho (js/produtos.js) -->
+      <div class="row g-3 align-items-end mb-2">
+        <div class="col-lg-6">
+          <p class="fw-semibold mb-1" id="rotulo-filtro">Filtrar por categoria</p>
+          <div class="btn-group flex-wrap" role="group" aria-labelledby="rotulo-filtro">
+            <button type="button" class="btn btn-outline-primary active" data-filtro="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="btn btn-outline-primary" data-filtro="acessorios" aria-pressed="false">Acessórios</button>
+            <button type="button" class="btn btn-outline-primary" data-filtro="racoes" aria-pressed="false">Rações</button>
+            <button type="button" class="btn btn-outline-primary" data-filtro="higiene" aria-pressed="false">Higiene e limpeza</button>
+          </div>
+        </div>
+        <div class="col-md-8 col-lg-4">
+          <label for="busca-produto" class="form-label fw-semibold mb-1">Buscar produto</label>
+          <input type="search" class="form-control" id="busca-produto" placeholder="Ex.: ração, cama, shampoo" aria-describedby="contagem-produtos">
+        </div>
+        <div class="col-md-4 col-lg-2 d-grid">
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#painel-carrinho" aria-controls="painel-carrinho">
+            Carrinho <span class="badge text-bg-light" id="contador-carrinho">0</span><span class="visually-hidden"> itens</span>
+          </button>
+        </div>
+      </div>
+      <p id="contagem-produtos" class="text-body-secondary small mb-4" aria-live="polite">9 produtos encontrados</p>
+      <p id="sem-resultado" class="alert alert-warning" hidden>Nenhum produto encontrado. Tente outra palavra ou escolha "Todos".</p>
 
-      <article>
-        <figure>
-          <img src="imagens/cama-pet.svg" alt="Ilustração de uma cama pet redonda marrom com almofada bege" width="200" height="200">
-          <figcaption>Cama pet redonda acolchoada – tamanho M</figcaption>
-        </figure>
-        <h3>Cama pet redonda acolchoada – tamanho M</h3>
-        <p>Cama redonda com bordas altas e enchimento em fibra siliconada. Tecido lavável e base antiderrapante. Indicada para cães e gatos de até 15 kg (60 cm de diâmetro).</p>
-        <p><strong>Valor: R$ 129,90</strong></p>
-      </article>
+      <section id="acessorios" class="secao-categoria mb-5" aria-labelledby="titulo-acessorios">
+        <h2 id="titulo-acessorios" class="fw-bold">Acessórios</h2>
+        <p>Roupas, brinquedos, camas e outros itens para o conforto e a diversão do seu pet.</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="acessorios" data-id="cama-m" data-nome="Cama pet redonda acolchoada – tamanho M" data-preco="129.90">
+              <img src="imagens/cama-pet.svg" alt="Ilustração de uma cama pet redonda marrom com almofada bege" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Cama pet redonda acolchoada – tamanho M</h3>
+                <p class="card-text">Cama redonda com bordas altas e enchimento em fibra siliconada. Tecido lavável e base antiderrapante. Para cães e gatos de até 15 kg (60 cm de diâmetro).</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 129,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Cama pet redonda acolchoada – tamanho M ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="acessorios" data-id="bolinha" data-nome="Bolinha mordedor de borracha" data-preco="24.90">
+              <img src="imagens/bolinha-mordedor.svg" alt="Ilustração de uma bolinha laranja com listras brancas" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Bolinha mordedor de borracha</h3>
+                <p class="card-text">Bolinha de borracha atóxica e resistente, com textura que ajuda na limpeza dos dentes. Ideal para brincadeiras de buscar. Diâmetro de 7 cm.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 24,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Bolinha mordedor de borracha ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="acessorios" data-id="moletom-p" data-nome="Roupinha moletom para cães – tamanho P" data-preco="59.90">
+              <img src="imagens/roupinha-moletom.svg" alt="Ilustração de um moletom azul para cães com estampa de pata branca" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Roupinha moletom para cães – tamanho P</h3>
+                <p class="card-text">Moletom de algodão com punho elástico e estampa de patinha. Mantém o pet aquecido nos dias frios. Para cães de 3 a 6 kg.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 59,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Roupinha moletom para cães – tamanho P ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="racoes" class="secao-categoria mb-5" aria-labelledby="titulo-racoes">
+        <h2 id="titulo-racoes" class="fw-bold">Rações não perecíveis</h2>
+        <p>Rações secas de longa validade, balanceadas para cada fase da vida e espécie.</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="racoes" data-id="racao-caes-15" data-nome="Ração seca para cães adultos – 15 kg" data-preco="189.90">
+              <img src="imagens/racao-caes-adultos.svg" alt="Ilustração de um saco vermelho de ração para cães de 15 kg" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Ração seca para cães adultos – 15 kg</h3>
+                <p class="card-text">Ração premium sabor carne e cereais para cães adultos de porte médio e grande. Rica em proteínas, com ômega 3 e 6 para pele e pelagem saudáveis.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 189,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Ração seca para cães adultos – 15 kg ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="racoes" data-id="racao-gatos-10" data-nome="Ração seca para gatos castrados – 10 kg" data-preco="159.90">
+              <img src="imagens/racao-gatos-castrados.svg" alt="Ilustração de um saco roxo de ração para gatos de 10 kg" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Ração seca para gatos castrados – 10 kg</h3>
+                <p class="card-text">Fórmula sabor salmão com baixo teor de gordura, que auxilia no controle de peso e na saúde do trato urinário de gatos castrados.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 159,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Ração seca para gatos castrados – 10 kg ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="racoes" data-id="racao-filhotes-3" data-nome="Ração seca para cães filhotes – 3 kg" data-preco="69.90">
+              <img src="imagens/racao-filhotes.svg" alt="Ilustração de um saco verde de ração para filhotes de 3 kg" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Ração seca para cães filhotes – 3 kg</h3>
+                <p class="card-text">Ração sabor frango com grãos menores, cálcio e DHA para o crescimento saudável de filhotes de 2 a 12 meses.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 69,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Ração seca para cães filhotes – 3 kg ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section id="higiene" class="secao-categoria mb-5" aria-labelledby="titulo-higiene">
+        <h2 id="titulo-higiene" class="fw-bold">Higiene e limpeza</h2>
+        <p>Produtos para manter o pet e a casa sempre limpos e cheirosos.</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="higiene" data-id="tapete-30" data-nome="Tapete higiênico – pacote com 30 unidades" data-preco="79.90">
+              <img src="imagens/tapete-higienico.svg" alt="Ilustração de um tapete higiênico quadriculado azul com a indicação x30" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Tapete higiênico – pacote com 30 unidades</h3>
+                <p class="card-text">Tapete com gel superabsorvente, base impermeável e atrativo canino que ajuda no adestramento. Tamanho 60 x 60 cm.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 79,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Tapete higiênico – pacote com 30 unidades ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="higiene" data-id="fralda-p" data-nome="Fralda descartável para cães – tamanho P (12 unidades)" data-preco="44.90">
+              <img src="imagens/fralda-pet.svg" alt="Ilustração de uma fralda descartável branca com fitas azuis" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Fralda descartável para cães – tamanho P (12 unidades)</h3>
+                <p class="card-text">Fralda com fitas ajustáveis e abertura para a cauda. Indicada para cadelas no cio, cães idosos ou com incontinência. Para cães de 3 a 7 kg.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 44,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Fralda descartável para cães – tamanho P (12 unidades) ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+          <div class="col">
+            <article class="card card-produto h-100" data-categoria="higiene" data-id="shampoo-500" data-nome="Shampoo neutro para cães e gatos – 500 ml" data-preco="34.90">
+              <img src="imagens/shampoo-neutro.svg" alt="Ilustração de um frasco verde-claro de shampoo neutro de 500 ml" width="200" height="200">
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title h5">Shampoo neutro para cães e gatos – 500 ml</h3>
+                <p class="card-text">Shampoo hipoalergênico com pH balanceado, sem corantes. Limpa suavemente e deixa a pelagem macia e brilhante.</p>
+                <p class="preco mt-auto mb-3"><span class="visually-hidden">Preço: </span>R$ 34,90</p>
+                <button type="button" class="btn btn-primary btn-adicionar" aria-label="Adicionar Shampoo neutro para cães e gatos – 500 ml ao carrinho">Adicionar ao carrinho</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-      <article>
-        <figure>
-          <img src="imagens/bolinha-mordedor.svg" alt="Ilustração de uma bolinha laranja com listras brancas" width="200" height="200">
-          <figcaption>Bolinha mordedor de borracha</figcaption>
-        </figure>
-        <h3>Bolinha mordedor de borracha</h3>
-        <p>Bolinha de borracha atóxica e resistente, com textura que ajuda na limpeza dos dentes. Ideal para brincadeiras de buscar. Diâmetro de 7 cm.</p>
-        <p><strong>Valor: R$ 24,90</strong></p>
-      </article>
+      <p class="text-body-secondary small">Valores sujeitos a alteração sem aviso prévio.</p>
+    </div>
 
-      <article>
-        <figure>
-          <img src="imagens/roupinha-moletom.svg" alt="Ilustração de um moletom azul para cães com estampa de pata branca" width="200" height="200">
-          <figcaption>Roupinha moletom para cães – tamanho P</figcaption>
-        </figure>
-        <h3>Roupinha moletom para cães – tamanho P</h3>
-        <p>Moletom de algodão com punho elástico e estampa de patinha. Mantém o pet aquecido nos dias frios. Para cães de 3 a 6 kg.</p>
-        <p><strong>Valor: R$ 59,90</strong></p>
-      </article>
-
-      <p><a href="#categorias">Voltar às categorias</a></p>
-      <hr>
-    </section>
-
-    <section id="racoes">
-      <h2>Rações não perecíveis</h2>
-      <p>Rações secas de longa validade, balanceadas para cada fase da vida e espécie.</p>
-
-      <article>
-        <figure>
-          <img src="imagens/racao-caes-adultos.svg" alt="Ilustração de um saco vermelho de ração para cães de 15 kg" width="200" height="200">
-          <figcaption>Ração seca para cães adultos – 15 kg</figcaption>
-        </figure>
-        <h3>Ração seca para cães adultos – 15 kg</h3>
-        <p>Ração premium sabor carne e cereais para cães adultos de porte médio e grande. Rica em proteínas, com ômega 3 e 6 para pele e pelagem saudáveis.</p>
-        <p><strong>Valor: R$ 189,90</strong></p>
-      </article>
-
-      <article>
-        <figure>
-          <img src="imagens/racao-gatos-castrados.svg" alt="Ilustração de um saco roxo de ração para gatos de 10 kg" width="200" height="200">
-          <figcaption>Ração seca para gatos castrados – 10 kg</figcaption>
-        </figure>
-        <h3>Ração seca para gatos castrados – 10 kg</h3>
-        <p>Fórmula sabor salmão com baixo teor de gordura, que auxilia no controle de peso e na saúde do trato urinário de gatos castrados.</p>
-        <p><strong>Valor: R$ 159,90</strong></p>
-      </article>
-
-      <article>
-        <figure>
-          <img src="imagens/racao-filhotes.svg" alt="Ilustração de um saco verde de ração para filhotes de 3 kg" width="200" height="200">
-          <figcaption>Ração seca para cães filhotes – 3 kg</figcaption>
-        </figure>
-        <h3>Ração seca para cães filhotes – 3 kg</h3>
-        <p>Ração sabor frango com grãos menores, cálcio e DHA para o crescimento saudável de filhotes de 2 a 12 meses.</p>
-        <p><strong>Valor: R$ 69,90</strong></p>
-      </article>
-
-      <p><a href="#categorias">Voltar às categorias</a></p>
-      <hr>
-    </section>
-
-    <section id="higiene">
-      <h2>Higiene e limpeza</h2>
-      <p>Produtos para manter o pet e a casa sempre limpos e cheirosos.</p>
-
-      <article>
-        <figure>
-          <img src="imagens/tapete-higienico.svg" alt="Ilustração de um tapete higiênico quadriculado azul com a indicação x30" width="200" height="200">
-          <figcaption>Tapete higiênico – pacote com 30 unidades</figcaption>
-        </figure>
-        <h3>Tapete higiênico – pacote com 30 unidades</h3>
-        <p>Tapete com gel superabsorvente que transforma o xixi em gel, base impermeável e atrativo canino que ajuda no adestramento. Tamanho 60 x 60 cm.</p>
-        <p><strong>Valor: R$ 79,90</strong></p>
-      </article>
-
-      <article>
-        <figure>
-          <img src="imagens/fralda-pet.svg" alt="Ilustração de uma fralda descartável branca com fitas azuis" width="200" height="200">
-          <figcaption>Fralda descartável para cães – tamanho P (12 unidades)</figcaption>
-        </figure>
-        <h3>Fralda descartável para cães – tamanho P (12 unidades)</h3>
-        <p>Fralda com fitas ajustáveis e abertura para a cauda. Indicada para cadelas no cio, cães idosos ou com incontinência. Para cães de 3 a 7 kg.</p>
-        <p><strong>Valor: R$ 44,90</strong></p>
-      </article>
-
-      <article>
-        <figure>
-          <img src="imagens/shampoo-neutro.svg" alt="Ilustração de um frasco verde-claro de shampoo neutro de 500 ml" width="200" height="200">
-          <figcaption>Shampoo neutro para cães e gatos – 500 ml</figcaption>
-        </figure>
-        <h3>Shampoo neutro para cães e gatos – 500 ml</h3>
-        <p>Shampoo hipoalergênico com pH balanceado, sem corantes. Limpa suavemente e deixa a pelagem macia e brilhante.</p>
-        <p><strong>Valor: R$ 34,90</strong></p>
-      </article>
-
-      <p><a href="#categorias">Voltar às categorias</a></p>
-      <hr>
-    </section>
-
-    <p>Gostou de algum produto? Entre em contato pelo telefone, WhatsApp ou e-mail informados no topo da página para fazer seu pedido. Valores sujeitos a alteração sem aviso prévio.</p>
+    <!-- Painel lateral do carrinho (Bootstrap offcanvas) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" role="dialog" id="painel-carrinho" aria-labelledby="titulo-carrinho">
+      <div class="offcanvas-header">
+        <h2 class="offcanvas-title h4" id="titulo-carrinho" tabindex="-1">Seu carrinho</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar o carrinho"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <p id="carrinho-vazio" class="text-body-secondary">Seu carrinho está vazio.</p>
+        <ul id="lista-carrinho" class="list-group mb-3"></ul>
+        <div class="mt-auto">
+          <p class="d-flex justify-content-between fs-5 fw-bold">Total: <span id="total-carrinho" aria-live="polite">R$ 0,00</span></p>
+          <button type="button" class="btn btn-primary w-100" id="btn-finalizar-pedido" disabled>Finalizar pedido</button>
+          <p class="small text-body-secondary mt-2 mb-0">O pagamento é combinado pelo WhatsApp na retirada ou entrega.</p>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <hr>
-    <nav aria-label="Links do rodapé">
-      <p><a href="index.html">Início</a> | <a href="produtos.html">Produtos</a> | <a href="servicos.html">Serviços</a> | <a href="sobre.html">Sobre e Contato</a> | <a href="ajuda.html">Ajuda</a></p>
-    </nav>
-    <address>
-      <strong>Patinhas &amp; Cia Pet Shop</strong><br>
-      Rua das Acácias, 120 – Jardim Primavera – São Paulo/SP – CEP 00000-000<br>
-      Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
-      E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
-    </address>
-    <p>
-      <small>
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="rodape mt-5 pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h2>Patinhas &amp; Cia Pet Shop</h2>
+          <address class="mb-0">
+            Rua das Acácias, 120 – Jardim Primavera<br>
+            São Paulo/SP – CEP 00000-000<br>
+            Telefone/WhatsApp: <a href="tel:+5511900000000">(11) 90000-0000</a><br>
+            E-mail: <a href="mailto:contato@patinhasecia.com.br">contato@patinhasecia.com.br</a>
+          </address>
+        </div>
+        <div class="col-md-4">
+          <h2>Navegação</h2>
+          <nav aria-label="Links do rodapé">
+            <ul class="list-unstyled mb-0">
+              <li><a href="index.html">Início</a></li>
+              <li><a href="produtos.html">Produtos</a></li>
+              <li><a href="servicos.html">Serviços</a></li>
+              <li><a href="agendamento.html">Agendamento</a></li>
+              <li><a href="sobre.html">Sobre e Contato</a></li>
+              <li><a href="ajuda.html">Ajuda</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-md-4">
+          <h2>Horário de funcionamento</h2>
+          <ul class="list-unstyled mb-0">
+            <li>Segunda a sexta: 8h às 19h</li>
+            <li>Sábado: 8h às 14h</li>
+            <li>Domingo e feriados: fechado</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="small mb-1">
         Site desenvolvido por <strong>João Victor Toledo Duarte</strong> como projeto da disciplina
-        <cite>Fundamentos de Sistemas Web</cite> (Fase 1).<br>
-        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a><br>
-        &copy; 2026 Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
-        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.<br>
+        <cite>Fundamentos de Sistemas Web</cite> (Fase 2).
+        Código-fonte: <a href="https://github.com/victtortoledokk/petshop-patinhas">github.com/victtortoledokk/petshop-patinhas</a>.
+      </p>
+      <p class="small mb-1">
+        &copy; <span class="ano-atual">2026</span> Patinhas &amp; Cia Pet Shop. Todos os direitos reservados.
+        Empresa fictícia criada para fins acadêmicos: preços, endereço e contatos são ilustrativos.
         Imagens: ilustrações próprias criadas para este projeto.
-      </small>
-    </p>
-    <p><a href="#topo">Voltar ao topo</a></p>
+      </p>
+      <p class="small mb-0"><a href="#topo">Voltar ao topo</a></p>
+    </div>
   </footer>
+
+  <!-- Região invisível lida por leitores de tela quando o JavaScript avisa algo -->
+  <div id="anuncio-leitor" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <!-- Área onde aparecem os avisos flutuantes (toasts) -->
+  <div id="area-avisos" class="toast-container position-fixed bottom-0 start-0 p-3"></div>
+
+  <!-- Scripts no fim do body: a página aparece antes de o JavaScript carregar -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+  <script src="js/dados.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/produtos.js"></script>
 </body>
 </html>
